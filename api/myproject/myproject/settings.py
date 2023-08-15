@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SESSION_COOKIE_NAME = 'sessionid'
+
 
 # Application definition
 
@@ -41,19 +43,26 @@ INSTALLED_APPS = [
     'myproject',
     'myapp',
     'corsheaders',
+   
     
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+ 
 ]
+
+
 
 ROOT_URLCONF = 'myproject.urls'
 
@@ -66,6 +75,12 @@ AUTHENTICATION_BACKENDS = [
     'myapp.backends.GoogleOAuthBackend',  
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+
+
+
+
 
 TEMPLATES = [
     {
@@ -134,6 +149,8 @@ USE_I18N = True
 USE_TZ = True
 
 
+AUTH_USER_MODEL = 'myapp.User'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -144,10 +161,19 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SESSION_ENGINE = "django.contrib.sessions.backends.cache" 
+# SESSION_ENGINE = "django.contrib.sessions.backends.cache" 
 # SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 # SESSION_COOKIE_SECURE = False  
 # SESSION_EXPIRE_AT_BROWSER_CLOSE = False  
+SESSION_COOKIE_SAMESITE = None
 
 
 # CORS_ALLOW_CREDENTIALS = True
+
+SESSION_COOKIE_SECURE = False
+
+
+
+CORS_ALLOW_CREDENTIALS = True
+
+

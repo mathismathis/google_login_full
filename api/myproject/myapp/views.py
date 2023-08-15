@@ -99,8 +99,9 @@ class LogoutView(APIView):
     
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+#@permission_classes([IsAuthenticated])
 def all_user_list(request):
     users = User.objects.all()
+    print(request.user)
     serializer = UserSerializer(users, many=True)  
     return Response(serializer.data)

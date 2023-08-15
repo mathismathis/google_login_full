@@ -15,8 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from django.urls import path
+from django.urls import path,include
 from myapp.views import GoogleLoginView,LogoutView,all_user_list
 
 urlpatterns = [
@@ -24,6 +23,7 @@ urlpatterns = [
     path('api/login/', GoogleLoginView.as_view(), name='google-login'),
     path('api/logout/', LogoutView.as_view(), name='google-logout'),
     path('api/user_list/', all_user_list, name='all_user_list'),
+
     
     
 ]
